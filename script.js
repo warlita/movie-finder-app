@@ -63,27 +63,27 @@ class MovieFinder extends React.Component {
 
     // this is where the API key will be placed to get list of results
     fetch(`https://www.omdbapi.com/?s=${searchTerm}&apikey=29a83133`)
-    .then((response) => {
-      if (response.ok) {
-        // .ok returns true if response status is 200-299
-        return response.json();
-      }
-      throw new Error('Request was either a 404 or 500');
-    }).then((data) => {
+    .then(checkStatus)
+    .then(json)
+    .then((data) => {
       if (data.Response === 'False') {
         throw new Error(data.Error);
       }
+
       if (data.Response === 'True' && data.Search) {
         this.setState({ results: data.Search, error: '' });
       }
-    }).catch((error) => {
+    })
+    .catch((error) => {
       this.setState({ error: error.message });
       console.log(error);
     })
-  }
+}
 
   render() {
     const { searchTerm, results, error } = this.state;
+
+    console.log('Results:', results);
 
     return (
       <div className="container">
