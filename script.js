@@ -1,4 +1,4 @@
-const checkStatus = (response) => {
+ const checkStatus = (response) => {
   if (response.ok) {
     // .ok returns true if response status is 200-299
     return response;
@@ -83,8 +83,6 @@ class MovieFinder extends React.Component {
   render() {
     const { searchTerm, results, error } = this.state;
 
-    console.log('Results:', results);
-
     return (
       <div className="container">
         <div className="row">
@@ -116,4 +114,4 @@ class MovieFinder extends React.Component {
 
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
-root.render(<MovieFinder />);
+root.render(<MovieFinder />); 
